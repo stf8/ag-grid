@@ -1,3 +1,7 @@
+> ## Fork info :
+> default classes and template update for a more bootstrap oriented look.
+> eg: pagination button, menus...
+
 
 ag-Grid
 ==============
