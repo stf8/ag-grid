@@ -1,3 +1,7 @@
+// Support for Node 0.10
+// See https://github.com/webpack/css-loader/issues/144
+require('es6-promise').polyfill();
+
 var gulp = require('gulp');
 var path = require('path');
 var clean = require('gulp-clean');

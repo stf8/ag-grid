@@ -30,6 +30,7 @@
   },
   "homepage": "http://www.ag-grid.com/",
   "devDependencies": {
+    "es6-promise": "3.1.2",
     "gulp": "3.9.0",
     "gulp-foreach": "0.1.0",
     "gulp-rename": "1.2.2",
