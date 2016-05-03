@@ -214,7 +214,7 @@ export class PaginationController {
         this.ePageRowSummaryPanel.style.visibility = "";
     }
 
-    private loadPage() {
+    public loadPage() {
         this.enableOrDisableButtons();
         var startRow = this.currentPage * this.datasource.pageSize;
         var endRow = (this.currentPage + 1) * this.datasource.pageSize;

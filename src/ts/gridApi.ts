@@ -87,7 +87,11 @@ export class GridApi {
     public exportDataAsCsv(params?: CsvExportParams): void {
         this.csvCreator.exportDataAsCsv(params)
     }
-
+    public refreshPage() {
+        if (this.gridOptionsWrapper.isRowModelPagination()) {
+            this.paginationController.loadPage();
+        }
+    }
     public setDatasource(datasource:any) {
         if (this.gridOptionsWrapper.isRowModelPagination()) {
             this.paginationController.setDatasource(datasource);
