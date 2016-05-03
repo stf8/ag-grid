@@ -367,7 +367,7 @@ export class FilterManager {
         }
 
         var eFilterGui = document.createElement('div');
-        eFilterGui.className = 'ag-filter';
+        eFilterGui.className = 'ag-filter panel-body';
         var guiFromFilter = filterWrapper.filter.getGui();
         if (_.isNodeOrElement(guiFromFilter)) {
             //a dom node or element was returned, so add child

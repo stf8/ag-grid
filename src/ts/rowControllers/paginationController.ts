@@ -25,16 +25,17 @@ var template =
                 ' [OF] '+
                 '<span id="recordCount"></span>'+
             '</span>'+
-            '<span class="ag-paging-page-summary-panel">'+
-                '<button type="button" class="ag-paging-button" id="btFirst">[FIRST]</button>'+
-                '<button type="button" class="ag-paging-button" id="btPrevious">[PREVIOUS]</button>'+
-                '[PAGE] '+
+            '<nav class="ag-paging-page-summary-panel"><ul class="pagination pagination-sm">'+
+                '<li><a class="ag-paging-button" id="btFirst">[FIRST]</a></li>'+
+                '<li><a class="ag-paging-button" id="btPrevious">[PREVIOUS]</a></li>'+
+                '<li class="disabled"><span>[PAGE] '+
                 '<span id="current"></span>'+
                 ' [OF] '+
-                '<span id="total"></span>'+
-                '<button type="button" class="ag-paging-button" id="btNext">[NEXT]</button>'+
-                '<button type="button" class="ag-paging-button" id="btLast">[LAST]</button>'+
-            '</span>'+
+                '<span id="total"></span></span></li>'+
+                '<li><a class="ag-paging-button" id="btNext">[NEXT]</a></li>'+
+                '<li><a class="ag-paging-button" id="btLast">[LAST]</a></li>'+
+            '</ul></nav>'+
+            '<span id="pageRowSummaryPanelRight"class="ag-paging-row-summary-panel-right" ></span>'
         '</div>';
 
 @Bean('paginationController')
@@ -304,14 +305,31 @@ export class PaginationController {
         this.btPrevious.disabled = disablePreviousAndFirst;
         this.btFirst.disabled = disablePreviousAndFirst;
 
+        if (disablePreviousAndFirst) {
+            _.addCssClass(this.btPrevious.parentNode, 'disabled');
+            _.addCssClass(this.btFirst.parentNode, 'disabled');
+        } else {
+            _.removeCssClass(this.btPrevious.parentNode, 'disabled');
+            _.removeCssClass(this.btFirst.parentNode, 'disabled');
+        }
+
         var zeroPagesToDisplay = this.isZeroPagesToDisplay();
         var onLastPage = this.foundMaxRow && this.currentPage === (this.totalPages - 1);
 
         var disableNext = onLastPage || zeroPagesToDisplay;
+
         this.btNext.disabled = disableNext;
+        if (disableNext)
+            _.addCssClass(this.btNext.parentNode, 'disabled');
+        else
+            _.removeCssClass(this.btNext.parentNode, 'disabled');
 
         var disableLast = !this.foundMaxRow || zeroPagesToDisplay || this.currentPage === (this.totalPages - 1);
         this.btLast.disabled = disableLast;
+        if (disableLast)
+            _.addCssClass(this.btLast.parentNode, 'disabled');
+        else
+            _.removeCssClass(this.btLast.parentNode, 'disabled');
     }
 
     private createTemplate() {
@@ -349,20 +367,28 @@ export class PaginationController {
 
         var that = this;
 
-        this.btNext.addEventListener('click', function () {
-            that.onBtNext();
+        this.btNext.addEventListener('click', function (e: Event) {
+            e.preventDefault();
+            if (!this.disabled)
+                that.onBtNext();
         });
 
-        this.btPrevious.addEventListener('click', function () {
-            that.onBtPrevious();
+        this.btPrevious.addEventListener('click', function (e: Event) {
+            e.preventDefault();
+            if (!this.disabled)
+                that.onBtPrevious();
         });
 
-        this.btFirst.addEventListener('click', function () {
-            that.onBtFirst();
+        this.btFirst.addEventListener('click', function (e: Event) {
+            e.preventDefault();
+            if (!this.disabled)
+                that.onBtFirst();
         });
 
-        this.btLast.addEventListener('click', function () {
-            that.onBtLast();
+        this.btLast.addEventListener('click', function (e: Event) {
+            e.preventDefault();
+            if (!this.disabled)
+                that.onBtLast();
         });
     }
 }

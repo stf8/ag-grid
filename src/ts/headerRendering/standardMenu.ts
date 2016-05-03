@@ -39,7 +39,7 @@ export class StandardMenuFactory implements IMenuFactory {
         var filterWrapper = this.filterManager.getOrCreateFilterWrapper(column);
 
         var eMenu = document.createElement('div');
-        _.addCssClass(eMenu, 'ag-menu');
+        _.addCssClass(eMenu, 'ag-menu panel panel-default');
         eMenu.appendChild(filterWrapper.gui);
 
         // need to show filter before positioning, as only after filter
