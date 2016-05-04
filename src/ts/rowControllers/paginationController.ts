@@ -192,6 +192,8 @@ export class PaginationController {
         }
         this.enableOrDisableButtons();
         this.updateRowLabels();
+
+        this.gridPanel.getBodyViewport().scrollTop = 0;
     }
 
     private updateRowLabels() {
