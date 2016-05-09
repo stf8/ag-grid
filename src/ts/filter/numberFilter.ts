@@ -3,8 +3,8 @@ import {Filter} from "./filter";
 
 var template =
         '<div>'+
-            '<div>'+
-                '<select class="ag-filter-select" id="filterType">'+
+            '<div class="form-group">'+
+                '<select class="form-control ag-filter-select" id="filterType">'+
                     '<option value="1">[EQUALS]</option>'+
                     '<option value="2">[NOT EQUAL]</option>'+
                     '<option value="3">[LESS THAN]</option>'+
@@ -13,11 +13,11 @@ var template =
                     '<option value="6">[GREATER THAN OR EQUAL]</option>'+
                 '</select>'+
             '</div>'+
-            '<div>'+
-                '<input class="ag-filter-filter" id="filterText" type="text" placeholder="[FILTER...]"/>'+
+            '<div class="form-group">'+
+                '<input class="form-control ag-filter-filter" id="filterText" type="text" placeholder="[FILTER...]"/>'+
             '</div>'+
             '<div class="ag-filter-apply-panel" id="applyPanel">'+
-                '<button type="button" id="applyButton">[APPLY FILTER]</button>' +
+                '<button class="btn btn-primary btn-sm" type="button" id="applyButton">[APPLY FILTER]</button>' +
             '</div>'+
         '</div>';
 
