@@ -92,6 +92,11 @@ export class GridApi {
             this.paginationController.loadPage();
         }
     }
+    public reset() {
+        if (this.gridOptionsWrapper.isRowModelPagination()) {
+            this.paginationController.reset();
+        }
+    }
     public setDatasource(datasource:any) {
         if (this.gridOptionsWrapper.isRowModelPagination()) {
             this.paginationController.setDatasource(datasource);

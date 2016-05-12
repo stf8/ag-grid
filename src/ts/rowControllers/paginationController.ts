@@ -117,7 +117,7 @@ export class PaginationController {
         this.reset();
     }
 
-    private reset() {
+    public reset() {
         // important to return here, as the user could be setting filter or sort before
         // data-source is set
         if (_.missing(this.datasource)) {
