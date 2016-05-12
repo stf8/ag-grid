@@ -13,7 +13,7 @@ export class ComponentUtil {
 
     public static STRING_PROPERTIES = [
         'sortingOrder', 'rowClass', 'rowSelection', 'overlayLoadingTemplate',
-        'overlayNoRowsTemplate', 'headerCellTemplate', 'quickFilterText', 'rowModelType'];
+        'overlayNoRowsTemplate', 'headerCellTemplate', 'quickFilterText', 'rowModelType', 'commonActionsTemplate'];
 
     public static OBJECT_PROPERTIES = [
         'rowStyle','context','groupColumnDef','localeText','icons','datasource','viewportDatasource',
@@ -42,7 +42,7 @@ export class ComponentUtil {
         'suppressParentsInRowNodes','showToolPanel','suppressColumnMoveAnimation','suppressMovableColumns',
         'suppressFieldDotNotation','enableRangeSelection','suppressEnterprise','rowGroupPanelShow',
         'suppressContextMenu','suppressMenuFilterPanel','suppressMenuMainPanel','suppressMenuColumnPanel',
-        'enableStatusBar','rememberGroupStateWhenNewData', 'enableCellChangeFlash'
+        'enableStatusBar','rememberGroupStateWhenNewData', 'enableCellChangeFlash', 'angularCompileCommonActions'
     ];
 
     public static FUNCTION_PROPERTIES = ['headerCellRenderer', 'localeTextFunc', 'groupRowInnerRenderer',

@@ -18,6 +18,7 @@ import {Constants} from "../constants";
 
 var template =
         '<div class="ag-paging-panel ag-font-style">'+
+            '<span class="ag-grid-common-actions">[ACTIONS]</span>'+
             '<span id="pageRowSummaryPanel" class="ag-paging-row-summary-panel">'+
                 '<span id="firstRowOnPage"></span>'+
                 ' [TO] '+
@@ -40,7 +41,8 @@ var template =
 
 @Bean('paginationController')
 export class PaginationController {
-
+    @Autowired('$scope') private $scope: any;
+    @Autowired('$compile') private $compile: any;
     @Autowired('filterManager') private filterManager: FilterManager;
     @Autowired('gridPanel') private gridPanel: GridPanel;
     @Autowired('gridOptionsWrapper') private gridOptionsWrapper: GridOptionsWrapper;
@@ -337,6 +339,7 @@ export class PaginationController {
     private createTemplate() {
         var localeTextFunc = this.gridOptionsWrapper.getLocaleTextFunc();
         return template
+            .replace('[ACTIONS]', this.gridOptionsWrapper.getCommonActionsTemplate())
             .replace('[PAGE]', localeTextFunc('page', 'Page'))
             .replace('[TO]', localeTextFunc('to', 'to'))
             .replace('[OF]', localeTextFunc('of', 'of'))
@@ -354,7 +357,14 @@ export class PaginationController {
     private setupComponents() {
 
         this.eGui = _.loadTemplate(this.createTemplate());
+        if (this.gridOptionsWrapper.isAngularCompileCommonActions()) {
 
+            var actionsScope = this.$scope.$new();
+            actionsScope.toto = 'titi';
+
+            console.log('actionscope', actionsScope);
+            this.eGui =  this.$compile(this.eGui)(actionsScope)[0];
+        }
         this.btNext = this.eGui.querySelector('#btNext');
         this.btPrevious = this.eGui.querySelector('#btPrevious');
         this.btFirst = this.eGui.querySelector('#btFirst');

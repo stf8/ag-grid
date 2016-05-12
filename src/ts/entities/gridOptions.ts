@@ -53,6 +53,8 @@ export interface GridOptions {
     rowModelType?: string;
     enableRangeSelection?: boolean;
     suppressEnterprise?: boolean;
+    commonActionsTemplate?: string;
+    angularCompileCommonActions?: boolean;
     // enterprise only
     rowGroupPanelShow?: string;
     suppressContextMenu?: boolean;

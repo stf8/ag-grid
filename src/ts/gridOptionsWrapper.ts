@@ -169,6 +169,17 @@ export class GridOptionsWrapper {
     }
 
     // properties
+
+    public getCommonActionsTemplate(): string {
+        if (typeof this.gridOptions.commonActionsTemplate === 'string')
+            return this.gridOptions.commonActionsTemplate;
+        return '';
+    }
+    public isAngularCompileCommonActions() {
+        if (this.gridOptions.angularCompileCommonActions)
+            return true;
+        return false;
+    }
     public getHeaderHeight(): number {
         if (typeof this.headerHeight === 'number') {
             return this.headerHeight;
