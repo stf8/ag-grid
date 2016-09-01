@@ -2,7 +2,7 @@ import {Utils as _} from '../utils';
 import {Filter} from "./filter";
 
 var template =
-        '<div>'+
+        '<div><form id="filterForm">'+
             '<div class="form-group">'+
                 '<select class="form-control ag-filter-select" id="filterType">'+
                     '<option value="1">[CONTAINS]</option>'+
@@ -18,7 +18,7 @@ var template =
             '<div class="ag-filter-apply-panel" id="applyPanel">'+
                 '<button class="btn btn-primary btn-sm" type="button" id="applyButton">[APPLY FILTER]</button>' +
             '</div>'+
-        '</div>';
+        '</form></div>';
 
 var CONTAINS = 1;
 var EQUALS = 2;
@@ -42,6 +42,7 @@ export class TextFilter implements Filter {
     private eTypeSelect: any;
     private applyActive: any;
     private eApplyButton: any;
+    private eFilterForm: any;
 
     public init(params: any): void {
         this.filterParams = params.filterParams;
@@ -128,6 +129,13 @@ export class TextFilter implements Filter {
     private setupApply() {
         if (this.applyActive) {
             this.eApplyButton = this.eGui.querySelector('#applyButton');
+            this.eFilterForm = this.eGui.querySelector('#filterForm');
+            console.log(this.eFilterForm);
+            this.eFilterForm.addEventListener('submit', (e: Event) => {
+                e.preventDefault();
+                this.filterChangedCallback();
+                return false;
+            });
             this.eApplyButton.addEventListener('click', () => {
                 this.filterChangedCallback();
             });
